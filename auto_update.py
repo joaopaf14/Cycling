@@ -85,7 +85,11 @@ def main() -> None:
 
     # Calcular pontos com as equipas ACTUAIS dos participantes
     # (as equipas passadas ficam preservadas nas etapas já em results)
-    stage_data = process_stage(stage, stage_results)
+    stage_data = {
+        "stage": stage,
+        "scores": process_stage(stage, stage_results),
+        "top10": stage_results[:10],
+    }
     results.append(stage_data)
     results.sort(key=lambda r: r["stage"])
     save_results(results)
