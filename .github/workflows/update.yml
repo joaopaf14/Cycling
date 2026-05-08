@@ -34,9 +34,6 @@ jobs:
       - name: Instalar dependências Python
         run: pip install -r requirements.txt
 
-      - name: Instalar browser do playwright
-        run: playwright install chromium --with-deps
-
       - name: Correr auto_update.py
         id: update
         run: |
