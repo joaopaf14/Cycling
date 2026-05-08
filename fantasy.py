@@ -57,16 +57,16 @@ def save_results(results: list[dict]) -> None:
 def _names_match(participant_name_norm: str, result_name_norm: str) -> bool:
     """
     Verifica se o nome do participante corresponde ao nome do resultado.
-    Aceita correspondências parciais de palavras com 4+ caracteres.
+    Estratégia: correspondência exacta, substring, ou pelo menos 2 palavras em comum.
     """
     if participant_name_norm in result_name_norm:
         return True
     if result_name_norm in participant_name_norm:
         return True
-    # Correspondência por palavra significativa (apelido, etc.)
-    p_words = [w for w in participant_name_norm.split() if len(w) >= 4]
-    r_words = set(result_name_norm.split())
-    return any(w in r_words for w in p_words)
+    # Correspondência por palavras: exige pelo menos 2 palavras em comum (>=3 chars)
+    p_words = {w for w in participant_name_norm.split() if len(w) >= 3}
+    r_words = {w for w in result_name_norm.split() if len(w) >= 3}
+    return len(p_words & r_words) >= 2
 
 
 def find_all_positions(

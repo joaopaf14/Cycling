@@ -4,13 +4,13 @@
     "scores": [
       {
         "participant": "João",
-        "best_rider": "Jonas Rutsch",
-        "position": 19,
-        "stage_points": 19,
+        "best_rider": "Jonas Vingegaard",
+        "position": 76,
+        "stage_points": 76,
         "riders_detail": [
           {
-            "rider_name": "Jonas Rutsch",
-            "position": 19
+            "rider_name": "Jonas Vingegaard",
+            "position": 76
           },
           {
             "rider_name": "Kaden Groves",
@@ -34,8 +34,8 @@
             "position": 1
           },
           {
-            "rider_name": "Felix Engelhardt",
-            "position": 98
+            "rider_name": "Felix Gall",
+            "position": 117
           },
           {
             "rider_name": "Jay Vine",
@@ -51,12 +51,12 @@
         "stage_points": 2,
         "riders_detail": [
           {
-            "rider_name": "Filippo Magli",
-            "position": 13
+            "rider_name": "Filippo Ganna",
+            "position": 65
           },
           {
-            "rider_name": "Giulio Ciccone",
-            "position": 60
+            "rider_name": "Giulio Pellizzari",
+            "position": 148
           },
           {
             "rider_name": "Tobias Lund Andresen",
