@@ -1,10 +1,11 @@
 """
 Scraper para procyclingstats.com — obtém resultados de etapas do Giro d'Italia.
+Usa cloudscraper para contornar a proteção Cloudflare do PCS.
 """
 
 import unicodedata
 
-import requests
+import cloudscraper
 from bs4 import BeautifulSoup
 
 from config import PCS_BASE_URL, RACE_SLUG, RACE_YEAR
@@ -41,19 +42,13 @@ def pcs_to_standard_name(pcs_name: str) -> str:
 
 def get_stage_results(stage_number: int) -> list[dict]:
     """
-    Obtém os resultados de uma etapa do PCS.
+    Obtém os resultados de uma etapa do PCS via cloudscraper.
     Devolve lista de dicts com {position, rider, rider_normalized}.
     """
-    url = f"{PCS_BASE_URL}/race/{RACE_SLUG}/{RACE_YEAR}/stage-{stage_number}"
-    headers = {
-        "User-Agent": (
-            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
-            "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"
-        ),
-        "Accept-Language": "pt-PT,pt;q=0.9,en;q=0.8",
-    }
+    url = f"{PCS_BASE_URL}/race/{RACE_SLUG}/{RACE_YEAR}/stage-{stage_number}/result/result"
 
-    resp = requests.get(url, headers=headers, timeout=20)
+    scraper = cloudscraper.create_scraper()
+    resp = scraper.get(url, timeout=30)
     resp.raise_for_status()
 
     soup = BeautifulSoup(resp.text, "html.parser")
@@ -93,11 +88,20 @@ def _parse_results(soup: BeautifulSoup) -> list[dict]:
                 continue
 
             # Procura link de corredor em qualquer coluna da linha
-            rider_link = row.find("a", href=lambda h: h and "/rider/" in h)
+            rider_link = row.find("a", href=lambda h: h and "rider/" in h)
             if not rider_link:
                 continue
 
-            pcs_name = rider_link.get_text(strip=True)
+            # O PCS usa <span class="uppercase">Lastname</span> Firstname
+            last_span = rider_link.find("span", class_="uppercase")
+            if last_span:
+                last_name = last_span.get_text(strip=True)
+                # Primeiro nome: texto que não está dentro do span
+                last_span.extract()
+                first_name = rider_link.get_text(strip=True)
+                pcs_name = f"{last_name.upper()} {first_name}".strip()
+            else:
+                pcs_name = rider_link.get_text(separator=" ", strip=True)
             standard_name = pcs_to_standard_name(pcs_name)
 
             table_results.append(

@@ -66,13 +66,17 @@ def main() -> None:
     # Buscar resultados do PCS
     try:
         stage_results = get_stage_results(stage)
+    except ValueError as exc:
+        # Etapa sem resultados = ainda não terminou. Não é um erro real.
+        log.info("Etapa %d: %s", stage, exc)
+        sys.exit(0)
     except Exception as exc:
-        log.error("Etapa %d: erro ao obter resultados — %s", stage, exc)
+        log.error("Etapa %d: erro inesperado — %s", stage, exc)
         sys.exit(1)
 
     if not stage_results:
-        log.warning("Etapa %d: lista vazia (etapa ainda em curso?)", stage)
-        sys.exit(1)
+        log.info("Etapa %d: sem resultados ainda.", stage)
+        sys.exit(0)
 
     log.info("Etapa %d: %d ciclistas obtidos.", stage, len(stage_results))
 
