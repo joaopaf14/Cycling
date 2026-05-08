@@ -1,0 +1,34 @@
+[
+  {
+    "name": "João",
+    "riders": [
+      "Jonas Vingegaard",
+      "Kaden Groves",
+      "Dylan Groenewegen"
+    ]
+  },
+  {
+    "name": "Vitor",
+    "riders": [
+      "Paul Magnier",
+      "Felix Gall",
+      "Jay Vine"
+    ]
+  },
+  {
+    "name": "Manu",
+    "riders": [
+      "Filippo Ganna",
+      "Giulio Pellizzari",
+      "Tobias Lund Andersen"
+    ]
+  },
+  {
+    "name": "Tiago",
+    "riders": [
+      "Jonathan Milan",
+      "Adam Yates",
+      "Thymen Arensman"
+    ]
+  }
+]

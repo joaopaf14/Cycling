@@ -1,0 +1,63 @@
+name: Fantasy Cycling — Auto Update
+
+on:
+  # Corre todos os dias às 21h30 (hora de Lisboa, WEST = UTC+1)
+  schedule:
+    - cron: '0 17 * * *'
+
+  # Trigger manual — para re-processar uma etapa ou correr fora de hora
+  workflow_dispatch:
+    inputs:
+      stage:
+        description: 'Número da etapa (deixa vazio para auto-detectar)'
+        required: false
+        default: ''
+      force:
+        description: 'Re-processar etapa mesmo que já exista?'
+        type: boolean
+        default: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repositório
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Instalar dependências
+        run: pip install -r requirements.txt
+
+      - name: Correr auto_update.py
+        run: |
+          ARGS=""
+          if [ -n "${{ github.event.inputs.stage }}" ]; then
+            ARGS="--stage ${{ github.event.inputs.stage }}"
+          fi
+          if [ "${{ github.event.inputs.force }}" = "true" ]; then
+            ARGS="$ARGS --force"
+          fi
+          python3 auto_update.py $ARGS
+
+      - name: Commit resultados actualizados
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/results.json index.html auto_update.log
+          # Só faz commit se houver alterações
+          git diff --cached --quiet || git commit -m "Auto-update $(date +'%Y-%m-%d %H:%M')"
+          git push
+
+      - name: Deploy para Netlify
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        run: |
+          npm install -g netlify-cli
+          netlify deploy --prod --dir . --filter index.html \
+            --message "Auto-update $(date +'%Y-%m-%d %H:%M')"

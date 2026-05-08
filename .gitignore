@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+*.pyo
+auto_update.log

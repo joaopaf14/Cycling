@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Fantasy Cycling — Giro d'Italia 2026</title>
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+        crossorigin="anonymous"/>
+  <style>
+    body { background: #f8f9fa; }
+    .hero {
+      background: linear-gradient(135deg, #e63946 0%, #c1121f 100%);
+      color: white;
+      padding: 2.5rem 1rem 2rem;
+      margin-bottom: 2rem;
+    }
+    .hero h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.5px; }
+    .hero .subtitle { opacity: .85; font-size: .95rem; }
+    .section-title {
+      font-size: .7rem; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: #6c757d; margin-bottom: .75rem;
+    }
+    .nav-pills .nav-link.active { background-color: #c1121f; }
+    .nav-pills .nav-link { color: #c1121f; }
+  </style>
+</head>
+<body>
+
+<div class="hero text-center">
+  <h1>🚴 Fantasy Cycling</h1>
+  <div class="subtitle">Giro d'Italia 2026 &nbsp;·&nbsp; 0 etapas disputadas</div>
+</div>
+
+<div class="container pb-5" style="max-width:860px">
+
+  <!-- Tabs -->
+  <ul class="nav nav-pills mb-4 justify-content-center" id="tabs" role="tablist">
+    <li class="nav-item"><button class="nav-link active px-4" data-bs-toggle="pill" data-bs-target="#tab-ranking">Ranking</button></li>
+    <li class="nav-item"><button class="nav-link px-4" data-bs-toggle="pill" data-bs-target="#tab-stages">Etapas</button></li>
+    <li class="nav-item"><button class="nav-link px-4" data-bs-toggle="pill" data-bs-target="#tab-participants">Equipas</button></li>
+  </ul>
+
+  <div class="tab-content">
+
+    <!-- RANKING -->
+    <div class="tab-pane fade show active" id="tab-ranking">
+      <p class="section-title">Classificação geral</p>
+      
+    <table class="table table-hover align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th class="text-center" style="width:60px">Pos</th>
+          <th>Participante</th>
+          <th class="text-center">Pontos</th>
+          <th class="text-center">Etapas</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="table-warning fw-bold">
+          <td class="text-center">🥇</td>
+          <td>João</td>
+          <td class="text-center text-primary">+0</td>
+          <td class="text-center text-muted">0</td>
+        </tr>
+        <tr >
+          <td class="text-center">🥈</td>
+          <td>Vitor</td>
+          <td class="text-center text-primary">+0</td>
+          <td class="text-center text-muted">0</td>
+        </tr>
+        <tr >
+          <td class="text-center">🥉</td>
+          <td>Manu</td>
+          <td class="text-center text-primary">+0</td>
+          <td class="text-center text-muted">0</td>
+        </tr>
+        <tr >
+          <td class="text-center">4º</td>
+          <td>Tiago</td>
+          <td class="text-center text-primary">+0</td>
+          <td class="text-center text-muted">0</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="text-muted small">
+      Pontos = posição do melhor corredor em cada etapa.
+      Vitória = posição 1 + bónus -50 pts. Menor total ganha.
+    </p>
+      
+    </div>
+
+    <!-- ETAPAS -->
+    <div class="tab-pane fade" id="tab-stages">
+      <p class="section-title">Resultados por etapa</p>
+      <div class="accordion">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed text-muted" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#stage1">
+              Etapa 1 <span class="ms-2 badge bg-secondary">Por disputar</span>
+            </button>
+          </h2>
+          <div id="stage1" class="accordion-collapse collapse">
+            <div class="accordion-body text-muted">Ainda não disputada.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed text-muted" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#stage2">
+              Etapa 2 <span class="ms-2 badge bg-secondary">Por disputar</span>
+            </button>
+          </h2>
+          <div id="stage2" class="accordion-collapse collapse">
+            <div class="accordion-body text-muted">Ainda não disputada.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed text-muted" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#stage3">
+              Etapa 3 <span class="ms-2 badge bg-secondary">Por disputar</span>
+            </button>
+          </h2>
+          <div id="stage3" class="accordion-collapse collapse">
+            <div class="accordion-body text-muted">Ainda não disputada.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed text-muted" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#stage4">
+              Etapa 4 <span class="ms-2 badge bg-secondary">Por disputar</span>
+            </button>
+          </h2>
+          <div id="stage4" class="accordion-collapse collapse">
+            <div class="accordion-body text-muted">Ainda não disputada.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed text-muted" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#stage5">
+              Etapa 5 <span class="ms-2 badge bg-secondary">Por disputar</span>
+            </button>
+          </h2>
+          <div id="stage5" class="accordion-collapse collapse">
+            <div class="accordion-body text-muted">Ainda não disputada.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed text-muted" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#stage6">
+              Etapa 6 <span class="ms-2 badge bg-secondary">Por disputar</span>
+            </button>
+          </h2>
+          <div id="stage6" class="accordion-collapse collapse">
+            <div class="accordion-body text-muted">Ainda não disputada.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed text-muted" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#stage7">
+              Etapa 7 <span class="ms-2 badge bg-secondary">Por disputar</span>
+            </button>
+          </h2>
+          <div id="stage7" class="accordion-collapse collapse">
+            <div class="accordion-body text-muted">Ainda não disputada.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed text-muted" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#stage8">
+              Etapa 8 <span class="ms-2 badge bg-secondary">Por disputar</span>
+            </button>
+          </h2>
+          <div id="stage8" class="accordion-collapse collapse">
+            <div class="accordion-body text-muted">Ainda não disputada.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed text-muted" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#stage9">
+              Etapa 9 <span class="ms-2 badge bg-secondary">Por disputar</span>
+            </button>
+          </h2>
+          <div id="stage9" class="accordion-collapse collapse">
+            <div class="accordion-body text-muted">Ainda não disputada.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed text-muted" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#stage10">
+              Etapa 10 <span class="ms-2 badge bg-secondary">Por disputar</span>
+            </button>
+          </h2>
+          <div id="stage10" class="accordion-collapse collapse">
+            <div class="accordion-body text-muted">Ainda não disputada.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed text-muted" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#stage11">
+              Etapa 11 <span class="ms-2 badge bg-secondary">Por disputar</span>
+            </button>
+          </h2>
+          <div id="stage11" class="accordion-collapse collapse">
+            <div class="accordion-body text-muted">Ainda não disputada.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed text-muted" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#stage12">
+              Etapa 12 <span class="ms-2 badge bg-secondary">Por disputar</span>
+            </button>
+          </h2>
+          <div id="stage12" class="accordion-collapse collapse">
+            <div class="accordion-body text-muted">Ainda não disputada.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed text-muted" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#stage13">
+              Etapa 13 <span class="ms-2 badge bg-secondary">Por disputar</span>
+            </button>
+          </h2>
+          <div id="stage13" class="accordion-collapse collapse">
+            <div class="accordion-body text-muted">Ainda não disputada.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed text-muted" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#stage14">
+              Etapa 14 <span class="ms-2 badge bg-secondary">Por disputar</span>
+            </button>
+          </h2>
+          <div id="stage14" class="accordion-collapse collapse">
+            <div class="accordion-body text-muted">Ainda não disputada.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed text-muted" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#stage15">
+              Etapa 15 <span class="ms-2 badge bg-secondary">Por disputar</span>
+            </button>
+          </h2>
+          <div id="stage15" class="accordion-collapse collapse">
+            <div class="accordion-body text-muted">Ainda não disputada.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed text-muted" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#stage16">
+              Etapa 16 <span class="ms-2 badge bg-secondary">Por disputar</span>
+            </button>
+          </h2>
+          <div id="stage16" class="accordion-collapse collapse">
+            <div class="accordion-body text-muted">Ainda não disputada.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed text-muted" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#stage17">
+              Etapa 17 <span class="ms-2 badge bg-secondary">Por disputar</span>
+            </button>
+          </h2>
+          <div id="stage17" class="accordion-collapse collapse">
+            <div class="accordion-body text-muted">Ainda não disputada.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed text-muted" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#stage18">
+              Etapa 18 <span class="ms-2 badge bg-secondary">Por disputar</span>
+            </button>
+          </h2>
+          <div id="stage18" class="accordion-collapse collapse">
+            <div class="accordion-body text-muted">Ainda não disputada.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed text-muted" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#stage19">
+              Etapa 19 <span class="ms-2 badge bg-secondary">Por disputar</span>
+            </button>
+          </h2>
+          <div id="stage19" class="accordion-collapse collapse">
+            <div class="accordion-body text-muted">Ainda não disputada.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed text-muted" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#stage20">
+              Etapa 20 <span class="ms-2 badge bg-secondary">Por disputar</span>
+            </button>
+          </h2>
+          <div id="stage20" class="accordion-collapse collapse">
+            <div class="accordion-body text-muted">Ainda não disputada.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed text-muted" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#stage21">
+              Etapa 21 <span class="ms-2 badge bg-secondary">Por disputar</span>
+            </button>
+          </h2>
+          <div id="stage21" class="accordion-collapse collapse">
+            <div class="accordion-body text-muted">Ainda não disputada.</div>
+          </div>
+        </div></div>
+    </div>
+
+    <!-- PARTICIPANTES -->
+    <div class="tab-pane fade" id="tab-participants">
+      <p class="section-title">Equipas por etapa</p>
+      
+    <div class="table-responsive">
+    <table class="table table-sm table-bordered align-middle">
+      <thead class="table-dark"><tr><th>Etapa</th><th class='text-center'>João</th><th class='text-center'>Vitor</th><th class='text-center'>Manu</th><th class='text-center'>Tiago</th></tr></thead>
+      <tbody><tr class='text-muted'><td class='fw-semibold text-nowrap'>Etapa 1&nbsp;<span class="badge bg-secondary">Pendente</span></td><td class='text-center small'><span class='text-muted small'>Jonas Vingegaard<br>Kaden Groves<br>Dylan Groenewegen</span></td><td class='text-center small'><span class='text-muted small'>Paul Magnier<br>Felix Gall<br>Jay Vine</span></td><td class='text-center small'><span class='text-muted small'>Filippo Ganna<br>Giulio Pellizzari<br>Tobias Lund Andersen</span></td><td class='text-center small'><span class='text-muted small'>Jonathan Milan<br>Adam Yates<br>Thymen Arensman</span></td></tr><tr class='text-muted'><td class='fw-semibold text-nowrap'>Etapa 2&nbsp;<span class="badge bg-secondary">Pendente</span></td><td class='text-center small'><span class='text-muted small'>Jonas Vingegaard<br>Kaden Groves<br>Dylan Groenewegen</span></td><td class='text-center small'><span class='text-muted small'>Paul Magnier<br>Felix Gall<br>Jay Vine</span></td><td class='text-center small'><span class='text-muted small'>Filippo Ganna<br>Giulio Pellizzari<br>Tobias Lund Andersen</span></td><td class='text-center small'><span class='text-muted small'>Jonathan Milan<br>Adam Yates<br>Thymen Arensman</span></td></tr><tr class='text-muted'><td class='fw-semibold text-nowrap'>Etapa 3&nbsp;<span class="badge bg-secondary">Pendente</span></td><td class='text-center small'><span class='text-muted small'>Jonas Vingegaard<br>Kaden Groves<br>Dylan Groenewegen</span></td><td class='text-center small'><span class='text-muted small'>Paul Magnier<br>Felix Gall<br>Jay Vine</span></td><td class='text-center small'><span class='text-muted small'>Filippo Ganna<br>Giulio Pellizzari<br>Tobias Lund Andersen</span></td><td class='text-center small'><span class='text-muted small'>Jonathan Milan<br>Adam Yates<br>Thymen Arensman</span></td></tr><tr class='text-muted'><td class='fw-semibold text-nowrap'>Etapa 4&nbsp;<span class="badge bg-secondary">Pendente</span></td><td class='text-center small'><span class='text-muted small'>Jonas Vingegaard<br>Kaden Groves<br>Dylan Groenewegen</span></td><td class='text-center small'><span class='text-muted small'>Paul Magnier<br>Felix Gall<br>Jay Vine</span></td><td class='text-center small'><span class='text-muted small'>Filippo Ganna<br>Giulio Pellizzari<br>Tobias Lund Andersen</span></td><td class='text-center small'><span class='text-muted small'>Jonathan Milan<br>Adam Yates<br>Thymen Arensman</span></td></tr><tr class='text-muted'><td class='fw-semibold text-nowrap'>Etapa 5&nbsp;<span class="badge bg-secondary">Pendente</span></td><td class='text-center small'><span class='text-muted small'>Jonas Vingegaard<br>Kaden Groves<br>Dylan Groenewegen</span></td><td class='text-center small'><span class='text-muted small'>Paul Magnier<br>Felix Gall<br>Jay Vine</span></td><td class='text-center small'><span class='text-muted small'>Filippo Ganna<br>Giulio Pellizzari<br>Tobias Lund Andersen</span></td><td class='text-center small'><span class='text-muted small'>Jonathan Milan<br>Adam Yates<br>Thymen Arensman</span></td></tr><tr class='text-muted'><td class='fw-semibold text-nowrap'>Etapa 6&nbsp;<span class="badge bg-secondary">Pendente</span></td><td class='text-center small'><span class='text-muted small'>Jonas Vingegaard<br>Kaden Groves<br>Dylan Groenewegen</span></td><td class='text-center small'><span class='text-muted small'>Paul Magnier<br>Felix Gall<br>Jay Vine</span></td><td class='text-center small'><span class='text-muted small'>Filippo Ganna<br>Giulio Pellizzari<br>Tobias Lund Andersen</span></td><td class='text-center small'><span class='text-muted small'>Jonathan Milan<br>Adam Yates<br>Thymen Arensman</span></td></tr><tr class='text-muted'><td class='fw-semibold text-nowrap'>Etapa 7&nbsp;<span class="badge bg-secondary">Pendente</span></td><td class='text-center small'><span class='text-muted small'>Jonas Vingegaard<br>Kaden Groves<br>Dylan Groenewegen</span></td><td class='text-center small'><span class='text-muted small'>Paul Magnier<br>Felix Gall<br>Jay Vine</span></td><td class='text-center small'><span class='text-muted small'>Filippo Ganna<br>Giulio Pellizzari<br>Tobias Lund Andersen</span></td><td class='text-center small'><span class='text-muted small'>Jonathan Milan<br>Adam Yates<br>Thymen Arensman</span></td></tr><tr class='text-muted'><td class='fw-semibold text-nowrap'>Etapa 8&nbsp;<span class="badge bg-secondary">Pendente</span></td><td class='text-center small'><span class='text-muted small'>Jonas Vingegaard<br>Kaden Groves<br>Dylan Groenewegen</span></td><td class='text-center small'><span class='text-muted small'>Paul Magnier<br>Felix Gall<br>Jay Vine</span></td><td class='text-center small'><span class='text-muted small'>Filippo Ganna<br>Giulio Pellizzari<br>Tobias Lund Andersen</span></td><td class='text-center small'><span class='text-muted small'>Jonathan Milan<br>Adam Yates<br>Thymen Arensman</span></td></tr><tr class='text-muted'><td class='fw-semibold text-nowrap'>Etapa 9&nbsp;<span class="badge bg-secondary">Pendente</span></td><td class='text-center small'><span class='text-muted small'>Jonas Vingegaard<br>Kaden Groves<br>Dylan Groenewegen</span></td><td class='text-center small'><span class='text-muted small'>Paul Magnier<br>Felix Gall<br>Jay Vine</span></td><td class='text-center small'><span class='text-muted small'>Filippo Ganna<br>Giulio Pellizzari<br>Tobias Lund Andersen</span></td><td class='text-center small'><span class='text-muted small'>Jonathan Milan<br>Adam Yates<br>Thymen Arensman</span></td></tr><tr class='text-muted'><td class='fw-semibold text-nowrap'>Etapa 10&nbsp;<span class="badge bg-secondary">Pendente</span></td><td class='text-center small'><span class='text-muted small'>Jonas Vingegaard<br>Kaden Groves<br>Dylan Groenewegen</span></td><td class='text-center small'><span class='text-muted small'>Paul Magnier<br>Felix Gall<br>Jay Vine</span></td><td class='text-center small'><span class='text-muted small'>Filippo Ganna<br>Giulio Pellizzari<br>Tobias Lund Andersen</span></td><td class='text-center small'><span class='text-muted small'>Jonathan Milan<br>Adam Yates<br>Thymen Arensman</span></td></tr><tr class='text-muted'><td class='fw-semibold text-nowrap'>Etapa 11&nbsp;<span class="badge bg-secondary">Pendente</span></td><td class='text-center small'><span class='text-muted small'>Jonas Vingegaard<br>Kaden Groves<br>Dylan Groenewegen</span></td><td class='text-center small'><span class='text-muted small'>Paul Magnier<br>Felix Gall<br>Jay Vine</span></td><td class='text-center small'><span class='text-muted small'>Filippo Ganna<br>Giulio Pellizzari<br>Tobias Lund Andersen</span></td><td class='text-center small'><span class='text-muted small'>Jonathan Milan<br>Adam Yates<br>Thymen Arensman</span></td></tr><tr class='text-muted'><td class='fw-semibold text-nowrap'>Etapa 12&nbsp;<span class="badge bg-secondary">Pendente</span></td><td class='text-center small'><span class='text-muted small'>Jonas Vingegaard<br>Kaden Groves<br>Dylan Groenewegen</span></td><td class='text-center small'><span class='text-muted small'>Paul Magnier<br>Felix Gall<br>Jay Vine</span></td><td class='text-center small'><span class='text-muted small'>Filippo Ganna<br>Giulio Pellizzari<br>Tobias Lund Andersen</span></td><td class='text-center small'><span class='text-muted small'>Jonathan Milan<br>Adam Yates<br>Thymen Arensman</span></td></tr><tr class='text-muted'><td class='fw-semibold text-nowrap'>Etapa 13&nbsp;<span class="badge bg-secondary">Pendente</span></td><td class='text-center small'><span class='text-muted small'>Jonas Vingegaard<br>Kaden Groves<br>Dylan Groenewegen</span></td><td class='text-center small'><span class='text-muted small'>Paul Magnier<br>Felix Gall<br>Jay Vine</span></td><td class='text-center small'><span class='text-muted small'>Filippo Ganna<br>Giulio Pellizzari<br>Tobias Lund Andersen</span></td><td class='text-center small'><span class='text-muted small'>Jonathan Milan<br>Adam Yates<br>Thymen Arensman</span></td></tr><tr class='text-muted'><td class='fw-semibold text-nowrap'>Etapa 14&nbsp;<span class="badge bg-secondary">Pendente</span></td><td class='text-center small'><span class='text-muted small'>Jonas Vingegaard<br>Kaden Groves<br>Dylan Groenewegen</span></td><td class='text-center small'><span class='text-muted small'>Paul Magnier<br>Felix Gall<br>Jay Vine</span></td><td class='text-center small'><span class='text-muted small'>Filippo Ganna<br>Giulio Pellizzari<br>Tobias Lund Andersen</span></td><td class='text-center small'><span class='text-muted small'>Jonathan Milan<br>Adam Yates<br>Thymen Arensman</span></td></tr><tr class='text-muted'><td class='fw-semibold text-nowrap'>Etapa 15&nbsp;<span class="badge bg-secondary">Pendente</span></td><td class='text-center small'><span class='text-muted small'>Jonas Vingegaard<br>Kaden Groves<br>Dylan Groenewegen</span></td><td class='text-center small'><span class='text-muted small'>Paul Magnier<br>Felix Gall<br>Jay Vine</span></td><td class='text-center small'><span class='text-muted small'>Filippo Ganna<br>Giulio Pellizzari<br>Tobias Lund Andersen</span></td><td class='text-center small'><span class='text-muted small'>Jonathan Milan<br>Adam Yates<br>Thymen Arensman</span></td></tr><tr class='text-muted'><td class='fw-semibold text-nowrap'>Etapa 16&nbsp;<span class="badge bg-secondary">Pendente</span></td><td class='text-center small'><span class='text-muted small'>Jonas Vingegaard<br>Kaden Groves<br>Dylan Groenewegen</span></td><td class='text-center small'><span class='text-muted small'>Paul Magnier<br>Felix Gall<br>Jay Vine</span></td><td class='text-center small'><span class='text-muted small'>Filippo Ganna<br>Giulio Pellizzari<br>Tobias Lund Andersen</span></td><td class='text-center small'><span class='text-muted small'>Jonathan Milan<br>Adam Yates<br>Thymen Arensman</span></td></tr><tr class='text-muted'><td class='fw-semibold text-nowrap'>Etapa 17&nbsp;<span class="badge bg-secondary">Pendente</span></td><td class='text-center small'><span class='text-muted small'>Jonas Vingegaard<br>Kaden Groves<br>Dylan Groenewegen</span></td><td class='text-center small'><span class='text-muted small'>Paul Magnier<br>Felix Gall<br>Jay Vine</span></td><td class='text-center small'><span class='text-muted small'>Filippo Ganna<br>Giulio Pellizzari<br>Tobias Lund Andersen</span></td><td class='text-center small'><span class='text-muted small'>Jonathan Milan<br>Adam Yates<br>Thymen Arensman</span></td></tr><tr class='text-muted'><td class='fw-semibold text-nowrap'>Etapa 18&nbsp;<span class="badge bg-secondary">Pendente</span></td><td class='text-center small'><span class='text-muted small'>Jonas Vingegaard<br>Kaden Groves<br>Dylan Groenewegen</span></td><td class='text-center small'><span class='text-muted small'>Paul Magnier<br>Felix Gall<br>Jay Vine</span></td><td class='text-center small'><span class='text-muted small'>Filippo Ganna<br>Giulio Pellizzari<br>Tobias Lund Andersen</span></td><td class='text-center small'><span class='text-muted small'>Jonathan Milan<br>Adam Yates<br>Thymen Arensman</span></td></tr><tr class='text-muted'><td class='fw-semibold text-nowrap'>Etapa 19&nbsp;<span class="badge bg-secondary">Pendente</span></td><td class='text-center small'><span class='text-muted small'>Jonas Vingegaard<br>Kaden Groves<br>Dylan Groenewegen</span></td><td class='text-center small'><span class='text-muted small'>Paul Magnier<br>Felix Gall<br>Jay Vine</span></td><td class='text-center small'><span class='text-muted small'>Filippo Ganna<br>Giulio Pellizzari<br>Tobias Lund Andersen</span></td><td class='text-center small'><span class='text-muted small'>Jonathan Milan<br>Adam Yates<br>Thymen Arensman</span></td></tr><tr class='text-muted'><td class='fw-semibold text-nowrap'>Etapa 20&nbsp;<span class="badge bg-secondary">Pendente</span></td><td class='text-center small'><span class='text-muted small'>Jonas Vingegaard<br>Kaden Groves<br>Dylan Groenewegen</span></td><td class='text-center small'><span class='text-muted small'>Paul Magnier<br>Felix Gall<br>Jay Vine</span></td><td class='text-center small'><span class='text-muted small'>Filippo Ganna<br>Giulio Pellizzari<br>Tobias Lund Andersen</span></td><td class='text-center small'><span class='text-muted small'>Jonathan Milan<br>Adam Yates<br>Thymen Arensman</span></td></tr><tr class='text-muted'><td class='fw-semibold text-nowrap'>Etapa 21&nbsp;<span class="badge bg-secondary">Pendente</span></td><td class='text-center small'><span class='text-muted small'>Jonas Vingegaard<br>Kaden Groves<br>Dylan Groenewegen</span></td><td class='text-center small'><span class='text-muted small'>Paul Magnier<br>Felix Gall<br>Jay Vine</span></td><td class='text-center small'><span class='text-muted small'>Filippo Ganna<br>Giulio Pellizzari<br>Tobias Lund Andersen</span></td><td class='text-center small'><span class='text-muted small'>Jonathan Milan<br>Adam Yates<br>Thymen Arensman</span></td></tr></tbody>
+    </table>
+    </div>
+    <p class="text-muted small">Equipas pendentes mostram a equipa atual (pode mudar até à etapa).</p>
+    </div>
+
+  </div>
+
+  <p class="text-center text-muted small mt-4">Atualizado a 08/05/2026 14:10</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc4s9bIOgUxi8T/jzmxFrXVMtf66EBc/UGl0+3M5DqNR"
+        crossorigin="anonymous"></script>
+<script>
+  // Fallback tabs
+  (function () {
+    var btns = document.querySelectorAll('[data-bs-toggle="pill"]');
+    var panes = document.querySelectorAll('.tab-pane');
+    btns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        btns.forEach(function (b) { b.classList.remove('active'); });
+        panes.forEach(function (p) { p.classList.remove('show', 'active'); });
+        btn.classList.add('active');
+        var target = document.querySelector(btn.getAttribute('data-bs-target'));
+        if (target) { target.classList.add('show', 'active'); }
+      });
+    });
+  })();
+  // Fallback accordion
+  (function () {
+    var accBtns = document.querySelectorAll('[data-bs-toggle="collapse"]');
+    accBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var targetId = btn.getAttribute('data-bs-target');
+        var panel = document.querySelector(targetId);
+        if (!panel) return;
+        var isOpen = panel.classList.contains('show');
+        // fecha todos os painéis do mesmo acordeão
+        var accordion = btn.closest('.accordion');
+        if (accordion) {
+          accordion.querySelectorAll('.accordion-collapse').forEach(function (p) {
+            p.classList.remove('show');
+          });
+          accordion.querySelectorAll('.accordion-button').forEach(function (b) {
+            b.classList.add('collapsed');
+          });
+        }
+        if (!isOpen) {
+          panel.classList.add('show');
+          btn.classList.remove('collapsed');
+        }
+      });
+    });
+  })();
+</script>
+</body>
+</html>
