@@ -1126,5 +1126,146 @@
         "rider_normalized": "beloki markel"
       }
     ]
+  },
+  {
+    "stage": 9,
+    "scores": [
+      {
+        "participant": "João",
+        "best_rider": "Jonas Vingegaard",
+        "position": 1,
+        "stage_points": -49,
+        "riders_detail": [
+          {
+            "rider_name": "Jonas Vingegaard",
+            "position": 1
+          },
+          {
+            "rider_name": "Jhonatan Narváez",
+            "position": 92
+          },
+          {
+            "rider_name": "Dylan Groenewegen",
+            "position": 128
+          }
+        ],
+        "note": "Vitória! Bónus -50 pts aplicado"
+      },
+      {
+        "participant": "Vitor",
+        "best_rider": "Felix Gall",
+        "position": 2,
+        "stage_points": 2,
+        "riders_detail": [
+          {
+            "rider_name": "Paul Magnier",
+            "position": 137
+          },
+          {
+            "rider_name": "Felix Gall",
+            "position": 2
+          },
+          {
+            "rider_name": "Jan Christen",
+            "position": 126
+          }
+        ],
+        "note": ""
+      },
+      {
+        "participant": "Manu",
+        "best_rider": "Giulio Pellizzari",
+        "position": 22,
+        "stage_points": 22,
+        "riders_detail": [
+          {
+            "rider_name": "Filippo Ganna",
+            "position": 140
+          },
+          {
+            "rider_name": "Giulio Pellizzari",
+            "position": 22
+          },
+          {
+            "rider_name": "Tobias Lund Andresen",
+            "position": 148
+          }
+        ],
+        "note": ""
+      },
+      {
+        "participant": "Tiago",
+        "best_rider": "Thymen Arensman",
+        "position": 4,
+        "stage_points": 4,
+        "riders_detail": [
+          {
+            "rider_name": "Jonathan Milan",
+            "position": 163
+          },
+          {
+            "rider_name": "Egan Bernal",
+            "position": 17
+          },
+          {
+            "rider_name": "Thymen Arensman",
+            "position": 4
+          }
+        ],
+        "note": ""
+      }
+    ],
+    "top10": [
+      {
+        "position": 1,
+        "rider": "Jonas Vingegaard",
+        "rider_normalized": "vingegaard jonas"
+      },
+      {
+        "position": 2,
+        "rider": "Felix Gall",
+        "rider_normalized": "gall felix"
+      },
+      {
+        "position": 3,
+        "rider": "Davide Piganzoli",
+        "rider_normalized": "piganzoli davide"
+      },
+      {
+        "position": 4,
+        "rider": "Thymen Arensman",
+        "rider_normalized": "arensman thymen"
+      },
+      {
+        "position": 5,
+        "rider": "Afonso Eulálio",
+        "rider_normalized": "eulalio afonso"
+      },
+      {
+        "position": 6,
+        "rider": "Derek Gee-West",
+        "rider_normalized": "gee-west derek"
+      },
+      {
+        "position": 7,
+        "rider": "Mathys Rondel",
+        "rider_normalized": "rondel mathys"
+      },
+      {
+        "position": 8,
+        "rider": "Sepp Kuss",
+        "rider_normalized": "kuss sepp"
+      },
+      {
+        "position": 9,
+        "rider": "Jai Hindley",
+        "rider_normalized": "hindley jai"
+      },
+      {
+        "position": 10,
+        "rider": "Michael Storer",
+        "rider_normalized": "storer michael"
+      }
+    ]
   }
 ]
