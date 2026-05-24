@@ -54,12 +54,3 @@ jobs:
           git add data/results.json index.html
           git diff --cached --quiet || git commit -m "Auto-update $(date +'%Y-%m-%d %H:%M')"
           git push
-
-      - name: Deploy para Netlify
-        if: steps.update.outputs.updated == 'true' || github.event_name == 'workflow_dispatch'
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        run: |
-          npm install -g netlify-cli
-          netlify deploy --prod --dir . --message "Auto-update $(date +'%Y-%m-%d %H:%M')"
