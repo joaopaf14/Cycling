@@ -2,33 +2,33 @@
   {
     "name": "João",
     "riders": [
-      "Jonas Vingegaard",
-      "Madis Mihkels",
-      "Dylan Groenewegen"
+      "Mads Pedersen",
+      "Tim Merlier",
+      "Florian Lipowitz"
     ]
   },
   {
     "name": "Vitor",
     "riders": [
-      "Paul Magnier",
-      "Felix Gall",
-      "Jan Christen"
+      "Jasper Philipsen",
+      "Remco Evenepoel",
+      "Tom Pidcock"
     ]
   },
   {
     "name": "Manu",
     "riders": [
-      "Giulio Ciccone",
-      "Giulio Pellizzari",
-      "Tobias Lund Andersen"
+      "Tadej Pogačar",
+      "Isaac del Toro",
+      "Biniam Girmay"
     ]
   },
   {
     "name": "Tiago",
     "riders": [
-      "Jonathan Milan",
-      "Alberto Bettiol",
-      "Thymen Arensman"
+      "Jonas Vingegaard",
+      "Luke Plapp",
+      "Olav Kooij"
     ]
   }
 ]

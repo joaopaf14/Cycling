@@ -14,6 +14,10 @@ on:
         description: 'Re-processar etapa mesmo que já exista?'
         type: boolean
         default: false
+      gc:
+        description: 'Usar a Classificação Geral (GC) em vez do resultado da etapa (ex.: CRE por equipas, etapa 1)'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -43,6 +47,9 @@ jobs:
           fi
           if [ "${{ github.event.inputs.force }}" = "true" ]; then
             ARGS="$ARGS --force"
+          fi
+          if [ "${{ github.event.inputs.gc }}" = "true" ]; then
+            ARGS="$ARGS --gc"
           fi
           python3 auto_update.py $ARGS && echo "updated=true" >> $GITHUB_OUTPUT || echo "updated=false" >> $GITHUB_OUTPUT
 

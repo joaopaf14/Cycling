@@ -1,4 +1,5 @@
-RACE_SLUG = "giro-d-italia"
+RACE_SLUG = "tour-de-france"
+RACE_NAME = "Tour de France"
 RACE_YEAR = 2026
 TOTAL_STAGES = 21
 PCS_BASE_URL = "https://www.procyclingstats.com"

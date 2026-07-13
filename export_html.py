@@ -5,7 +5,7 @@ Basta abrir no browser ou partilhar via Google Drive / WhatsApp.
 
 from datetime import datetime
 
-from config import RACE_YEAR, STAGE_WIN_BONUS, TOTAL_STAGES
+from config import RACE_NAME, RACE_YEAR, STAGE_WIN_BONUS, TOTAL_STAGES
 from fantasy import get_cumulative_rankings, get_total_scores, load_participants, load_results
 
 OUTPUT_FILE = "index.html"
@@ -283,7 +283,7 @@ def generate_html() -> str:
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Fantasy Cycling — Giro d'Italia {RACE_YEAR}</title>
+  <title>Fantasy Cycling — {RACE_NAME} {RACE_YEAR}</title>
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
@@ -310,7 +310,7 @@ def generate_html() -> str:
 
 <div class="hero text-center">
   <h1>🚴 Fantasy Cycling</h1>
-  <div class="subtitle">Giro d'Italia {RACE_YEAR} &nbsp;·&nbsp; {stages_done} etapa{'s' if stages_done != 1 else ''} disputada{'s' if stages_done != 1 else ''}</div>
+  <div class="subtitle">{RACE_NAME} {RACE_YEAR} &nbsp;·&nbsp; {stages_done} etapa{'s' if stages_done != 1 else ''} disputada{'s' if stages_done != 1 else ''}</div>
 </div>
 
 <div class="container pb-5" style="max-width:860px">
