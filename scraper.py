@@ -1,5 +1,5 @@
 """
-Scraper para procyclingstats.com — obtém resultados de etapas do Giro d'Italia.
+Scraper para procyclingstats.com — obtém resultados de etapas de uma corrida (config.RACE_SLUG).
 Usa cloudscraper para contornar a proteção Cloudflare do PCS.
 """
 
@@ -46,7 +46,24 @@ def get_stage_results(stage_number: int) -> list[dict]:
     Devolve lista de dicts com {position, rider, rider_normalized}.
     """
     url = f"{PCS_BASE_URL}/race/{RACE_SLUG}/{RACE_YEAR}/stage-{stage_number}/result/result"
+    return _fetch_and_parse(url, stage_number, label="resultados")
 
+
+def get_gc_results(stage_number: int) -> list[dict]:
+    """
+    Obtém a Classificação Geral (GC) individual após uma etapa, em vez do
+    resultado da própria etapa.
+
+    Útil para etapas como um CRE (contrarrelógio por equipas), em que o
+    resultado da etapa em si é organizado por equipa e não reflecte bem a
+    posição individual de cada corredor — a GC após essa etapa já vem
+    ordenada por corredor.
+    """
+    url = f"{PCS_BASE_URL}/race/{RACE_SLUG}/{RACE_YEAR}/stage-{stage_number}-gc"
+    return _fetch_and_parse(url, stage_number, label="classificação geral")
+
+
+def _fetch_and_parse(url: str, stage_number: int, label: str) -> list[dict]:
     scraper = cloudscraper.create_scraper()
     resp = scraper.get(url, timeout=30)
     resp.raise_for_status()
@@ -56,7 +73,7 @@ def get_stage_results(stage_number: int) -> list[dict]:
 
     if not results:
         raise ValueError(
-            f"Sem resultados para a etapa {stage_number}. "
+            f"Sem {label} para a etapa {stage_number}. "
             "A etapa ainda não foi disputada ou a estrutura da página mudou."
         )
 

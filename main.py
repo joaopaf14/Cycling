@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Fantasy Cycling — Giro d'Italia 2026
+Fantasy Cycling — Tour de France 2026
 CLI principal.
 
 Utilização:
@@ -16,7 +16,7 @@ Utilização:
 import argparse
 import sys
 
-from config import RIDERS_PER_PARTICIPANT, TOTAL_STAGES
+from config import RACE_NAME, RACE_YEAR, RIDERS_PER_PARTICIPANT, TOTAL_STAGES
 from export_html import generate_html
 from fantasy import (
     get_total_scores,
@@ -26,7 +26,7 @@ from fantasy import (
     save_participants,
     save_results,
 )
-from scraper import get_stage_results
+from scraper import get_gc_results, get_stage_results
 
 # ---------------------------------------------------------------------------
 # Helpers de apresentação
@@ -42,7 +42,7 @@ def _print_ranking() -> None:
 
     plural = "s" if stages_done != 1 else ""
     print(f"\n{'=' * 55}")
-    print(f"  RANKING — Giro d'Italia 2026  (após {stages_done} etapa{plural})")
+    print(f"  RANKING — {RACE_NAME} {RACE_YEAR}  (após {stages_done} etapa{plural})")
     print(f"{'=' * 55}")
 
     if not ranking:
@@ -112,9 +112,9 @@ def cmd_update(args) -> None:
         print(f"Etapa {stage} já processada. Usa --force para substituir.")
         sys.exit(1)
 
-    print(f"\nA obter resultados da etapa {stage} em procyclingstats.com...")
+    print(f"\nA obter {'classificação geral' if args.gc else 'resultados'} da etapa {stage} em procyclingstats.com...")
     try:
-        stage_results = get_stage_results(stage)
+        stage_results = (get_gc_results if args.gc else get_stage_results)(stage)
     except Exception as exc:  # noqa: BLE001
         print(f"Erro ao obter resultados: {exc}")
         sys.exit(1)
@@ -270,7 +270,7 @@ def cmd_change_team(args) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Fantasy Cycling — Giro d'Italia 2026",
+        description=f"Fantasy Cycling — {RACE_NAME} {RACE_YEAR}",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=(
             "Exemplos:\n"
@@ -291,6 +291,11 @@ def main() -> None:
     p_update.add_argument("stage", type=int, metavar="ETAPA", help="Número da etapa (1–21)")
     p_update.add_argument(
         "--force", action="store_true", help="Substituir resultados já existentes"
+    )
+    p_update.add_argument(
+        "--gc", action="store_true",
+        help="Usar a Classificação Geral (GC) após a etapa em vez do resultado da etapa "
+             "(ex.: etapa 1 do Tour 2026, que é um CRE por equipas)",
     )
 
     sub.add_parser("ranking", help="Ver classificação geral")

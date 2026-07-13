@@ -6,6 +6,8 @@ Uso:
   python3 auto_update.py                   # processa próxima etapa pendente
   python3 auto_update.py --stage 5         # força etapa específica
   python3 auto_update.py --stage 5 --force # re-processa etapa já existente
+  python3 auto_update.py --stage 1 --gc    # usa a GC em vez do resultado da etapa
+                                            # (ex.: CRE por equipas)
 """
 
 import argparse
@@ -16,7 +18,7 @@ from pathlib import Path
 from config import TOTAL_STAGES
 from export_html import generate_html
 from fantasy import load_results, process_stage, save_results
-from scraper import get_stage_results
+from scraper import get_gc_results, get_stage_results
 
 LOG_FILE = Path(__file__).parent / "auto_update.log"
 logging.basicConfig(
@@ -43,6 +45,11 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Auto-update da Fantasy Cycling")
     parser.add_argument("--stage", type=int, default=None, help="Etapa específica")
     parser.add_argument("--force", action="store_true", help="Re-processar etapa já existente")
+    parser.add_argument(
+        "--gc", action="store_true",
+        help="Usar a Classificação Geral (GC) após a etapa em vez do resultado da etapa "
+             "(ex.: CRE por equipas)",
+    )
     args = parser.parse_args()
 
     # Determinar etapa
