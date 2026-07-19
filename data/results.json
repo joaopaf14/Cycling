@@ -1972,5 +1972,146 @@
         "rider_normalized": "skjelmose mattias"
       }
     ]
+  },
+  {
+    "stage": 15,
+    "scores": [
+      {
+        "participant": "João",
+        "best_rider": "Florian Lipowitz",
+        "position": 5,
+        "stage_points": 5,
+        "riders_detail": [
+          {
+            "rider_name": "Mads Pedersen",
+            "position": 141
+          },
+          {
+            "rider_name": "Tim Merlier",
+            "position": null
+          },
+          {
+            "rider_name": "Florian Lipowitz",
+            "position": 5
+          }
+        ],
+        "note": ""
+      },
+      {
+        "participant": "Vitor",
+        "best_rider": "Remco Evenepoel",
+        "position": 1,
+        "stage_points": -49,
+        "riders_detail": [
+          {
+            "rider_name": "Jasper Philipsen",
+            "position": 159
+          },
+          {
+            "rider_name": "Remco Evenepoel",
+            "position": 1
+          },
+          {
+            "rider_name": "Tom Pidcock",
+            "position": 13
+          }
+        ],
+        "note": "Vitória! Bónus -50 pts aplicado"
+      },
+      {
+        "participant": "Manu",
+        "best_rider": "Tadej Pogačar",
+        "position": 2,
+        "stage_points": 2,
+        "riders_detail": [
+          {
+            "rider_name": "Tadej Pogačar",
+            "position": 2
+          },
+          {
+            "rider_name": "Isaac Del Toro",
+            "position": 3
+          },
+          {
+            "rider_name": "Biniam Girmay",
+            "position": 163
+          }
+        ],
+        "note": ""
+      },
+      {
+        "participant": "Tiago",
+        "best_rider": "Luke Plapp",
+        "position": 147,
+        "stage_points": 147,
+        "riders_detail": [
+          {
+            "rider_name": "Jonas Vingegaard",
+            "position": null
+          },
+          {
+            "rider_name": "Luke Plapp",
+            "position": 147
+          },
+          {
+            "rider_name": "Olav Kooij",
+            "position": 148
+          }
+        ],
+        "note": ""
+      }
+    ],
+    "top10": [
+      {
+        "position": 1,
+        "rider": "Remco Evenepoel",
+        "rider_normalized": "evenepoel remco"
+      },
+      {
+        "position": 2,
+        "rider": "Tadej Pogačar",
+        "rider_normalized": "pogacar tadej"
+      },
+      {
+        "position": 3,
+        "rider": "Isaac Del Toro",
+        "rider_normalized": "del toro isaac"
+      },
+      {
+        "position": 4,
+        "rider": "Paul Seixas",
+        "rider_normalized": "seixas paul"
+      },
+      {
+        "position": 5,
+        "rider": "Florian Lipowitz",
+        "rider_normalized": "lipowitz florian"
+      },
+      {
+        "position": 6,
+        "rider": "Mattias Skjelmose",
+        "rider_normalized": "skjelmose mattias"
+      },
+      {
+        "position": 7,
+        "rider": "Lenny Martinez",
+        "rider_normalized": "martinez lenny"
+      },
+      {
+        "position": 8,
+        "rider": "Juan Ayuso",
+        "rider_normalized": "ayuso juan"
+      },
+      {
+        "position": 9,
+        "rider": "Adam Yates",
+        "rider_normalized": "yates adam"
+      },
+      {
+        "position": 10,
+        "rider": "Quinn Simmons",
+        "rider_normalized": "simmons quinn"
+      }
+    ]
   }
 ]
