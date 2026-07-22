@@ -1,12 +1,12 @@
 """
 Scraper para procyclingstats.com — obtém resultados de etapas de uma corrida (config.RACE_SLUG).
-Usa curl_cffi para contornar a proteção Cloudflare do PCS.
+Usa cloudscraper para contornar a proteção Cloudflare do PCS.
 """
 
 import unicodedata
 
+import cloudscraper
 from bs4 import BeautifulSoup
-from curl_cffi import requests
 
 from config import PCS_BASE_URL, RACE_SLUG, RACE_YEAR
 
@@ -42,7 +42,7 @@ def pcs_to_standard_name(pcs_name: str) -> str:
 
 def get_stage_results(stage_number: int) -> list[dict]:
     """
-    Obtém os resultados de uma etapa do PCS via curl_cffi.
+    Obtém os resultados de uma etapa do PCS via cloudscraper.
     Devolve lista de dicts com {position, rider, rider_normalized}.
     """
     url = f"{PCS_BASE_URL}/race/{RACE_SLUG}/{RACE_YEAR}/stage-{stage_number}/result/result"
@@ -51,15 +51,21 @@ def get_stage_results(stage_number: int) -> list[dict]:
 
 def get_gc_results(stage_number: int) -> list[dict]:
     """
-    Obtém a Classificação Geral (GC) individual após uma etapa.
+    Obtém a Classificação Geral (GC) individual após uma etapa, em vez do
+    resultado da própria etapa.
+
+    Útil para etapas como um CRE (contrarrelógio por equipas), em que o
+    resultado da etapa em si é organizado por equipa e não reflecte bem a
+    posição individual de cada corredor — a GC após essa etapa já vem
+    ordenada por corredor.
     """
     url = f"{PCS_BASE_URL}/race/{RACE_SLUG}/{RACE_YEAR}/stage-{stage_number}-gc"
     return _fetch_and_parse(url, stage_number, label="classificação geral")
 
 
 def _fetch_and_parse(url: str, stage_number: int, label: str) -> list[dict]:
-    # impersonate="chrome" simula os cabeçalhos e a impressão digital TLS de um browser real
-    resp = requests.get(url, impersonate="chrome", timeout=30)
+    scraper = cloudscraper.create_scraper()
+    resp = scraper.get(url, timeout=30)
     resp.raise_for_status()
 
     soup = BeautifulSoup(resp.text, "html.parser")
