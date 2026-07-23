@@ -2395,5 +2395,146 @@
         "rider_normalized": "gate aaron"
       }
     ]
+  },
+  {
+    "stage": 18,
+    "scores": [
+      {
+        "participant": "João",
+        "best_rider": "Juan Ayuso",
+        "position": 12,
+        "stage_points": 12,
+        "riders_detail": [
+          {
+            "rider_name": "Mads Pedersen",
+            "position": 89
+          },
+          {
+            "rider_name": "Mathieu Van Der Poel",
+            "position": 95
+          },
+          {
+            "rider_name": "Juan Ayuso",
+            "position": 12
+          }
+        ],
+        "note": ""
+      },
+      {
+        "participant": "Vitor",
+        "best_rider": "Remco Evenepoel",
+        "position": 9,
+        "stage_points": 9,
+        "riders_detail": [
+          {
+            "rider_name": "Jasper Philipsen",
+            "position": 136
+          },
+          {
+            "rider_name": "Remco Evenepoel",
+            "position": 9
+          },
+          {
+            "rider_name": "Tom Pidcock",
+            "position": 10
+          }
+        ],
+        "note": ""
+      },
+      {
+        "participant": "Manu",
+        "best_rider": "Tadej Pogačar",
+        "position": 13,
+        "stage_points": 13,
+        "riders_detail": [
+          {
+            "rider_name": "Tadej Pogačar",
+            "position": 13
+          },
+          {
+            "rider_name": "Isaac Del Toro",
+            "position": 17
+          },
+          {
+            "rider_name": "Biniam Girmay",
+            "position": 150
+          }
+        ],
+        "note": ""
+      },
+      {
+        "participant": "Tiago",
+        "best_rider": "Paul Seixas",
+        "position": 15,
+        "stage_points": 15,
+        "riders_detail": [
+          {
+            "rider_name": "Paul Seixas",
+            "position": 15
+          },
+          {
+            "rider_name": "Luke Plapp",
+            "position": 130
+          },
+          {
+            "rider_name": "Olav Kooij",
+            "position": 143
+          }
+        ],
+        "note": ""
+      }
+    ],
+    "top10": [
+      {
+        "position": 1,
+        "rider": "Richard Carapaz",
+        "rider_normalized": "carapaz richard"
+      },
+      {
+        "position": 2,
+        "rider": "Mauro Schmid",
+        "rider_normalized": "schmid mauro"
+      },
+      {
+        "position": 3,
+        "rider": "Matteo Jorgenson",
+        "rider_normalized": "jorgenson matteo"
+      },
+      {
+        "position": 4,
+        "rider": "Valentin Paret-Peintre",
+        "rider_normalized": "paret-peintre valentin"
+      },
+      {
+        "position": 5,
+        "rider": "Tobias Halland Johannessen",
+        "rider_normalized": "johannessen tobias halland"
+      },
+      {
+        "position": 6,
+        "rider": "Pablo Castrillo",
+        "rider_normalized": "castrillo pablo"
+      },
+      {
+        "position": 7,
+        "rider": "Raúl García Pierna",
+        "rider_normalized": "garcia pierna raul"
+      },
+      {
+        "position": 8,
+        "rider": "Lenny Martinez",
+        "rider_normalized": "martinez lenny"
+      },
+      {
+        "position": 9,
+        "rider": "Remco Evenepoel",
+        "rider_normalized": "evenepoel remco"
+      },
+      {
+        "position": 10,
+        "rider": "Tom Pidcock",
+        "rider_normalized": "pidcock tom"
+      }
+    ]
   }
 ]
