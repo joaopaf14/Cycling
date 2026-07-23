@@ -40,6 +40,11 @@ jobs:
 
       - name: Correr auto_update.py
         id: update
+        env:
+          # Opcional: define este secret no repo (Settings → Secrets → Actions)
+          # para haver um fallback via proxy quando o pedido direto ao PCS
+          # falhar sempre (ex.: bloqueio de IP dos runners do GitHub).
+          SCRAPER_API_KEY: ${{ secrets.SCRAPER_API_KEY }}
         run: |
           ARGS=""
           if [ -n "${{ github.event.inputs.stage }}" ]; then

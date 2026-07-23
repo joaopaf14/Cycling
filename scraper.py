@@ -3,12 +3,22 @@ Scraper para procyclingstats.com — obtém resultados de etapas de uma corrida 
 Usa cloudscraper para contornar a proteção Cloudflare do PCS.
 """
 
+import os
+import time
 import unicodedata
 
 import cloudscraper
+import requests
 from bs4 import BeautifulSoup
 
 from config import PCS_BASE_URL, RACE_SLUG, RACE_YEAR
+
+# Se definida (ex.: secret do GitHub Actions), usada como último recurso quando o
+# pedido direto falha sempre — encaminha o pedido através de um serviço de
+# "unblocking" (ScraperAPI-compatível: GET https://api.scraperapi.com/?api_key=...&url=...)
+# em vez de sair diretamente do IP do runner.
+PROXY_API_KEY = os.environ.get("SCRAPER_API_KEY")
+PROXY_ENDPOINT = "https://api.scraperapi.com/"
 
 
 def normalize_name(name: str) -> str:
@@ -63,12 +73,8 @@ def get_gc_results(stage_number: int) -> list[dict]:
     return _fetch_and_parse(url, stage_number, label="classificação geral")
 
 
-def _fetch_and_parse(url: str, stage_number: int, label: str) -> list[dict]:
-    scraper = cloudscraper.create_scraper()
-    resp = scraper.get(url, timeout=30)
-    resp.raise_for_status()
-
-    soup = BeautifulSoup(resp.text, "html.parser")
+def _parse_and_validate(html: str, stage_number: int, label: str) -> list[dict]:
+    soup = BeautifulSoup(html, "html.parser")
     results = _parse_results(soup)
 
     if not results:
@@ -78,6 +84,61 @@ def _fetch_and_parse(url: str, stage_number: int, label: str) -> list[dict]:
         )
 
     return sorted(results, key=lambda x: x["position"])
+
+
+def _fetch_direct(url: str) -> str:
+    scraper = cloudscraper.create_scraper()
+    resp = scraper.get(url, timeout=30)
+    resp.raise_for_status()
+    return resp.text
+
+
+def _fetch_via_proxy(url: str) -> str:
+    """
+    Vai buscar a página através de um serviço externo de 'unblocking', em vez de
+    diretamente — útil quando o IP do runner (ex.: GitHub Actions) está a ser
+    bloqueado pela Cloudflare do PCS, algo que não controlamos.
+    Só é chamada se SCRAPER_API_KEY estiver definida (ex.: como secret do GitHub).
+    """
+    resp = requests.get(
+        PROXY_ENDPOINT,
+        params={"api_key": PROXY_API_KEY, "url": url},
+        # O ScraperAPI recomenda >= 70s: internamente tenta com proxies diferentes
+        # durante até 70s antes de desistir. 60s cortava a chamada demasiado cedo.
+        timeout=75,
+    )
+    resp.raise_for_status()
+    return resp.text
+
+
+def _fetch_and_parse(url: str, stage_number: int, label: str, max_attempts: int = 3) -> list[dict]:
+    last_exc: Exception | None = None
+
+    # 1) Tentativas diretas (com pequeno backoff entre elas)
+    for attempt in range(1, max_attempts + 1):
+        try:
+            html = _fetch_direct(url)
+            return _parse_and_validate(html, stage_number, label)
+        except ValueError:
+            # Sem dados = etapa ainda não disputada. Repetir não vai ajudar.
+            raise
+        except Exception as exc:
+            last_exc = exc
+            if attempt < max_attempts:
+                time.sleep(5 * attempt)
+
+    # 2) Último recurso: se houver um proxy configurado, tenta por aí
+    #    (ex.: bloqueio persistente de IP que os retries diretos não resolvem)
+    if PROXY_API_KEY:
+        try:
+            html = _fetch_via_proxy(url)
+            return _parse_and_validate(html, stage_number, label)
+        except ValueError:
+            raise
+        except Exception as exc:
+            last_exc = exc
+
+    raise last_exc
 
 
 def _parse_results(soup: BeautifulSoup) -> list[dict]:
