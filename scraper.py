@@ -103,7 +103,9 @@ def _fetch_via_proxy(url: str) -> str:
     resp = requests.get(
         PROXY_ENDPOINT,
         params={"api_key": PROXY_API_KEY, "url": url},
-        timeout=60,
+        # O ScraperAPI recomenda >= 70s: internamente tenta com proxies diferentes
+        # durante até 70s antes de desistir. 60s cortava a chamada demasiado cedo.
+        timeout=75,
     )
     resp.raise_for_status()
     return resp.text
