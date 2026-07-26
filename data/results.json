@@ -2824,55 +2824,55 @@
     "scores": [
       {
         "participant": "João",
-        "best_rider": "Mads Pedersen",
-        "position": 5,
-        "stage_points": 5,
+        "best_rider": "Mathieu Van Der Poel",
+        "position": 1,
+        "stage_points": -49,
         "riders_detail": [
           {
             "rider_name": "Mads Pedersen",
-            "position": 5
+            "position": 3
           },
           {
-            "rider_name": "Mathieu van der Poel",
-            "position": null
+            "rider_name": "Mathieu Van Der Poel",
+            "position": 1
           },
           {
             "rider_name": "Juan Ayuso",
-            "position": 10
+            "position": null
           }
         ],
-        "note": ""
+        "note": "Vitória! Bónus -50 pts aplicado"
       },
       {
         "participant": "Vitor",
-        "best_rider": null,
-        "position": null,
-        "stage_points": null,
+        "best_rider": "Jasper Philipsen",
+        "position": 2,
+        "stage_points": 2,
         "riders_detail": [
           {
             "rider_name": "Jasper Philipsen",
-            "position": null
+            "position": 2
           },
           {
             "rider_name": "Remco Evenepoel",
-            "position": null
+            "position": 32
           },
           {
             "rider_name": "Tom Pidcock",
             "position": null
           }
         ],
-        "note": "Nenhum corredor classificado"
+        "note": ""
       },
       {
         "participant": "Manu",
-        "best_rider": null,
-        "position": null,
-        "stage_points": null,
+        "best_rider": "Biniam Girmay",
+        "position": 11,
+        "stage_points": 11,
         "riders_detail": [
           {
             "rider_name": "Tadej Pogačar",
-            "position": null
+            "position": 30
           },
           {
             "rider_name": "Isaac del Toro",
@@ -2880,28 +2880,28 @@
           },
           {
             "rider_name": "Biniam Girmay",
-            "position": null
+            "position": 11
           }
         ],
-        "note": "Nenhum corredor classificado"
+        "note": ""
       },
       {
         "participant": "Tiago",
-        "best_rider": "Luke Plapp",
-        "position": 7,
-        "stage_points": 7,
+        "best_rider": "Olav Kooij",
+        "position": 5,
+        "stage_points": 5,
         "riders_detail": [
           {
             "rider_name": "Michael Matthews",
-            "position": null
+            "position": 13
           },
           {
             "rider_name": "Luke Plapp",
-            "position": 7
+            "position": null
           },
           {
             "rider_name": "Olav Kooij",
-            "position": null
+            "position": 5
           }
         ],
         "note": ""
@@ -2910,53 +2910,53 @@
     "top10": [
       {
         "position": 1,
-        "rider": "Baptiste Veistroffer",
-        "rider_normalized": "veistroffer baptiste"
+        "rider": "Mathieu Van Der Poel",
+        "rider_normalized": "van der poel mathieu"
       },
       {
         "position": 2,
-        "rider": "Xabier Mikel Azparren",
-        "rider_normalized": "azparren xabier mikel"
+        "rider": "Jasper Philipsen",
+        "rider_normalized": "philipsen jasper"
       },
       {
         "position": 3,
-        "rider": "Warren Barguil",
-        "rider_normalized": "barguil warren"
-      },
-      {
-        "position": 4,
-        "rider": "Mattias Skjelmose",
-        "rider_normalized": "skjelmose mattias"
-      },
-      {
-        "position": 5,
         "rider": "Mads Pedersen",
         "rider_normalized": "pedersen mads"
       },
       {
+        "position": 4,
+        "rider": "Max Kanter",
+        "rider_normalized": "kanter max"
+      },
+      {
+        "position": 5,
+        "rider": "Olav Kooij",
+        "rider_normalized": "kooij olav"
+      },
+      {
         "position": 6,
-        "rider": "Krists Neilands",
-        "rider_normalized": "neilands krists"
+        "rider": "Matej Mohorič",
+        "rider_normalized": "mohoric matej"
       },
       {
         "position": 7,
-        "rider": "Luke Plapp",
-        "rider_normalized": "plapp luke"
+        "rider": "Rick Pluimers",
+        "rider_normalized": "pluimers rick"
       },
       {
         "position": 8,
-        "rider": "Pavel Bittner",
-        "rider_normalized": "bittner pavel"
+        "rider": "Anthony Turgis",
+        "rider_normalized": "turgis anthony"
       },
       {
         "position": 9,
-        "rider": "Jenthe Biermans",
-        "rider_normalized": "biermans jenthe"
+        "rider": "Clément Russo",
+        "rider_normalized": "russo clement"
       },
       {
         "position": 10,
-        "rider": "Juan Ayuso",
-        "rider_normalized": "ayuso juan"
+        "rider": "Milan Fretin",
+        "rider_normalized": "fretin milan"
       }
     ]
   }
