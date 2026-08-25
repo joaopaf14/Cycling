@@ -1,1 +1,143 @@
-[]
+[
+  {
+    "stage": 1,
+    "scores": [
+      {
+        "participant": "João",
+        "best_rider": "Mads Pedersen",
+        "position": 15,
+        "stage_points": 15,
+        "riders_detail": [
+          {
+            "rider_name": "Mattias Skjelmose",
+            "position": 40
+          },
+          {
+            "rider_name": "Mads Pedersen",
+            "position": 15
+          },
+          {
+            "rider_name": "Kaden Groves",
+            "position": 76
+          }
+        ],
+        "note": ""
+      },
+      {
+        "participant": "Vitor",
+        "best_rider": "Joshua Tarling",
+        "position": 3,
+        "stage_points": 3,
+        "riders_detail": [
+          {
+            "rider_name": "Matthew Brennan",
+            "position": 16
+          },
+          {
+            "rider_name": "Joshua Tarling",
+            "position": 3
+          },
+          {
+            "rider_name": "Sepp Kuss",
+            "position": 89
+          }
+        ],
+        "note": ""
+      },
+      {
+        "participant": "Manu",
+        "best_rider": "Wout Van Aert",
+        "position": 9,
+        "stage_points": 9,
+        "riders_detail": [
+          {
+            "rider_name": "Wout Van Aert",
+            "position": 9
+          },
+          {
+            "rider_name": "Richard Carapaz",
+            "position": 52
+          },
+          {
+            "rider_name": "Oscar Onley",
+            "position": 106
+          }
+        ],
+        "note": ""
+      },
+      {
+        "participant": "Tiago",
+        "best_rider": "Tadej Pogačar",
+        "position": 1,
+        "stage_points": -49,
+        "riders_detail": [
+          {
+            "rider_name": "Tadej Pogačar",
+            "position": 1
+          },
+          {
+            "rider_name": "João Almeida",
+            "position": 18
+          },
+          {
+            "rider_name": "Jordi Meeus",
+            "position": 87
+          }
+        ],
+        "note": "Vitória! Bónus -50 pts aplicado"
+      }
+    ],
+    "top10": [
+      {
+        "position": 1,
+        "rider": "Tadej Pogačar",
+        "rider_normalized": "pogacar tadej"
+      },
+      {
+        "position": 2,
+        "rider": "Ethan Hayter",
+        "rider_normalized": "hayter ethan"
+      },
+      {
+        "position": 3,
+        "rider": "Joshua Tarling",
+        "rider_normalized": "tarling joshua"
+      },
+      {
+        "position": 4,
+        "rider": "Callum Thornley",
+        "rider_normalized": "thornley callum"
+      },
+      {
+        "position": 5,
+        "rider": "Christophe Laporte",
+        "rider_normalized": "laporte christophe"
+      },
+      {
+        "position": 6,
+        "rider": "Léo Bisiaux",
+        "rider_normalized": "bisiaux leo"
+      },
+      {
+        "position": 7,
+        "rider": "Oscar Chamberlain",
+        "rider_normalized": "chamberlain oscar"
+      },
+      {
+        "position": 8,
+        "rider": "Finn Fisher-Black",
+        "rider_normalized": "fisher-black finn"
+      },
+      {
+        "position": 9,
+        "rider": "Wout Van Aert",
+        "rider_normalized": "van aert wout"
+      },
+      {
+        "position": 10,
+        "rider": "Arthur Kluckers",
+        "rider_normalized": "kluckers arthur"
+      }
+    ]
+  }
+]
