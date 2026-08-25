@@ -139,5 +139,146 @@
         "rider_normalized": "kluckers arthur"
       }
     ]
+  },
+  {
+    "stage": 2,
+    "scores": [
+      {
+        "participant": "João",
+        "best_rider": "Mads Pedersen",
+        "position": 4,
+        "stage_points": 4,
+        "riders_detail": [
+          {
+            "rider_name": "Mattias Skjelmose",
+            "position": 33
+          },
+          {
+            "rider_name": "Mads Pedersen",
+            "position": 4
+          },
+          {
+            "rider_name": "Kaden Groves",
+            "position": 122
+          }
+        ],
+        "note": ""
+      },
+      {
+        "participant": "Vitor",
+        "best_rider": "Matthew Brennan",
+        "position": 1,
+        "stage_points": -49,
+        "riders_detail": [
+          {
+            "rider_name": "Matthew Brennan",
+            "position": 1
+          },
+          {
+            "rider_name": "Joshua Tarling",
+            "position": 125
+          },
+          {
+            "rider_name": "Sepp Kuss",
+            "position": 35
+          }
+        ],
+        "note": "Vitória! Bónus -50 pts aplicado"
+      },
+      {
+        "participant": "Manu",
+        "best_rider": "Oscar Onley",
+        "position": 10,
+        "stage_points": 10,
+        "riders_detail": [
+          {
+            "rider_name": "Wout Van Aert",
+            "position": 22
+          },
+          {
+            "rider_name": "Richard Carapaz",
+            "position": 25
+          },
+          {
+            "rider_name": "Oscar Onley",
+            "position": 10
+          }
+        ],
+        "note": ""
+      },
+      {
+        "participant": "Tiago",
+        "best_rider": "Tadej Pogačar",
+        "position": 3,
+        "stage_points": 3,
+        "riders_detail": [
+          {
+            "rider_name": "Tadej Pogačar",
+            "position": 3
+          },
+          {
+            "rider_name": "João Almeida",
+            "position": 59
+          },
+          {
+            "rider_name": "Jordi Meeus",
+            "position": 129
+          }
+        ],
+        "note": ""
+      }
+    ],
+    "top10": [
+      {
+        "position": 1,
+        "rider": "Matthew Brennan",
+        "rider_normalized": "brennan matthew"
+      },
+      {
+        "position": 2,
+        "rider": "Pau Miquel",
+        "rider_normalized": "miquel pau"
+      },
+      {
+        "position": 3,
+        "rider": "Tadej Pogačar",
+        "rider_normalized": "pogacar tadej"
+      },
+      {
+        "position": 4,
+        "rider": "Mads Pedersen",
+        "rider_normalized": "pedersen mads"
+      },
+      {
+        "position": 5,
+        "rider": "Hugo Hofstetter",
+        "rider_normalized": "hofstetter hugo"
+      },
+      {
+        "position": 6,
+        "rider": "Tobias Halland Johannessen",
+        "rider_normalized": "johannessen tobias halland"
+      },
+      {
+        "position": 7,
+        "rider": "Finn Fisher-Black",
+        "rider_normalized": "fisher-black finn"
+      },
+      {
+        "position": 8,
+        "rider": "Axel Laurance",
+        "rider_normalized": "laurance axel"
+      },
+      {
+        "position": 9,
+        "rider": "Orluis Aular",
+        "rider_normalized": "aular orluis"
+      },
+      {
+        "position": 10,
+        "rider": "Oscar Onley",
+        "rider_normalized": "onley oscar"
+      }
+    ]
   }
 ]
