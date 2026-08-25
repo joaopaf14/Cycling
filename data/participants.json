@@ -2,33 +2,33 @@
   {
     "name": "João",
     "riders": [
+      "Mattias Skjelmose",
       "Mads Pedersen",
-      "Mathieu van der Poel",
-      "Juan Ayuso"
+      "Kaden Groves"
     ]
   },
   {
     "name": "Vitor",
     "riders": [
-      "Jasper Philipsen",
-      "Remco Evenepoel",
-      "Tom Pidcock"
+      "Matthew Brennan",
+      "Joshua Tarling",
+      "Sepp Kuss"
     ]
   },
   {
     "name": "Manu",
     "riders": [
-      "Tadej Pogačar",
-      "Isaac del Toro",
-      "Biniam Girmay"
+      "Wout Van Aert",
+      "Richard Carapaz",
+      "Oscar Onley"
     ]
   },
   {
     "name": "Tiago",
     "riders": [
-      "Michael Matthews",
-      "Luke Plapp",
-      "Olav Kooij"
+      "Tadej Pogačar",
+      "João Almeida",
+      "Jordi Meeus"
     ]
   }
 ]
