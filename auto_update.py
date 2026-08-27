@@ -3,11 +3,17 @@
 Auto-update da Fantasy Cycling.
 
 Uso:
-  python3 auto_update.py                   # processa próxima etapa pendente
-  python3 auto_update.py --stage 5         # força etapa específica
+  python3 auto_update.py                   # processa TODAS as etapas pendentes em sequência,
+                                            # parando na primeira ainda não disputada
+  python3 auto_update.py --stage 5         # força só essa etapa específica
   python3 auto_update.py --stage 5 --force # re-processa etapa já existente
   python3 auto_update.py --stage 1 --gc    # usa a GC em vez do resultado da etapa
-                                            # (ex.: CRE por equipas)
+                                            # (ex.: CRE por equipas) — só faz sentido
+                                            # combinado com --stage
+
+Etapas anuladas (ex.: mau tempo) são detetadas automaticamente e marcadas como
+tal em data/results.json (scores vazios), para o processo não ficar preso à
+espera de resultados que nunca vão chegar.
 """
 
 import argparse
@@ -18,7 +24,7 @@ from pathlib import Path
 from config import TOTAL_STAGES
 from export_html import generate_html
 from fantasy import load_results, process_stage, save_results
-from scraper import get_gc_results, get_stage_results
+from scraper import StageCancelled, get_gc_results, get_stage_results
 
 LOG_FILE = Path(__file__).parent / "auto_update.log"
 logging.basicConfig(
@@ -41,49 +47,42 @@ def _next_pending_stage() -> int | None:
     return None
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser(description="Auto-update da Fantasy Cycling")
-    parser.add_argument("--stage", type=int, default=None, help="Etapa específica")
-    parser.add_argument("--force", action="store_true", help="Re-processar etapa já existente")
-    parser.add_argument(
-        "--gc", action="store_true",
-        help="Usar a Classificação Geral (GC) após a etapa em vez do resultado da etapa "
-             "(ex.: CRE por equipas)",
-    )
-    args = parser.parse_args()
+def _save_cancelled(stage: int) -> None:
+    results = [r for r in load_results() if r["stage"] != stage]
+    results.append({"stage": stage, "cancelled": True, "scores": [], "top10": []})
+    results.sort(key=lambda r: r["stage"])
+    save_results(results)
 
-    # Determinar etapa
-    if args.stage:
-        stage = args.stage
-        log.info("Etapa especificada: %d%s", stage, " (--force)" if args.force else "")
-    else:
-        stage = _next_pending_stage()
-        if stage is None:
-            log.info("Todas as %d etapas já processadas.", TOTAL_STAGES)
-            sys.exit(0)
-        log.info("Próxima etapa pendente: %d", stage)
 
-    # Verificar se já existe (sem --force, sair)
+def _process_stage(stage: int, *, gc: bool, force: bool) -> str:
+    """
+    Processa uma única etapa. Devolve o estado:
+      "done"      — processada e guardada com sucesso
+      "cancelled" — etapa anulada; marcada como tal para não bloquear as seguintes
+      "not_yet"   — a corrida ainda não tem resultados para esta etapa
+      "skipped"   — já estava processada e não se pediu --force
+    Erros inesperados (não ValueError/StageCancelled) propagam-se para quem chamou.
+    """
     results = load_results()
     already_done = any(r["stage"] == stage for r in results)
-    if already_done and not args.force:
+    if already_done and not force:
         log.info("Etapa %d já processada. Usa --force para re-processar.", stage)
-        sys.exit(0)
+        return "skipped"
 
-    # Buscar resultados do PCS
     try:
-        stage_results = get_stage_results(stage)
+        stage_results = (get_gc_results if gc else get_stage_results)(stage)
+    except StageCancelled as exc:
+        log.info("Etapa %d: %s", stage, exc)
+        _save_cancelled(stage)
+        return "cancelled"
     except ValueError as exc:
         # Etapa sem resultados = ainda não terminou. Não é um erro real.
         log.info("Etapa %d: %s", stage, exc)
-        sys.exit(0)
-    except Exception as exc:
-        log.error("Etapa %d: erro inesperado — %s", stage, exc)
-        sys.exit(1)
+        return "not_yet"
 
     if not stage_results:
         log.info("Etapa %d: sem resultados ainda.", stage)
-        sys.exit(0)
+        return "not_yet"
 
     log.info("Etapa %d: %d ciclistas obtidos.", stage, len(stage_results))
 
@@ -102,10 +101,64 @@ def main() -> None:
     save_results(results)
 
     log.info("Etapa %d guardada.", stage)
+    return "done"
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Auto-update da Fantasy Cycling")
+    parser.add_argument(
+        "--stage", type=int, default=None,
+        help="Etapa específica. Se omitido, processa todas as etapas pendentes em sequência.",
+    )
+    parser.add_argument("--force", action="store_true", help="Re-processar etapa(s) já existente(s)")
+    parser.add_argument(
+        "--gc", action="store_true",
+        help="Usar a Classificação Geral (GC) após a etapa em vez do resultado da etapa "
+             "(ex.: CRE por equipas). Só é usado com --stage — no modo automático "
+             "as etapas seguintes usam sempre o resultado normal.",
+    )
+    args = parser.parse_args()
+
+    processed = 0
+
+    if args.stage:
+        log.info("Etapa especificada: %d%s%s", args.stage,
+                  " (--force)" if args.force else "", " (--gc)" if args.gc else "")
+        try:
+            status = _process_stage(args.stage, gc=args.gc, force=args.force)
+        except Exception as exc:
+            log.error("Etapa %d: erro inesperado — %s", args.stage, exc)
+            sys.exit(1)
+        if status in ("done", "cancelled"):
+            processed += 1
+    else:
+        # Modo automático: percorre todas as etapas pendentes seguidas,
+        # parando na primeira que ainda não tenha resultados disponíveis.
+        while True:
+            stage = _next_pending_stage()
+            if stage is None:
+                log.info("Todas as %d etapas já processadas.", TOTAL_STAGES)
+                break
+
+            log.info("Próxima etapa pendente: %d", stage)
+            try:
+                status = _process_stage(stage, gc=False, force=args.force)
+            except Exception as exc:
+                log.error("Etapa %d: erro inesperado — %s", stage, exc)
+                sys.exit(1)
+
+            if status in ("done", "cancelled"):
+                processed += 1
+                continue  # tenta logo a etapa seguinte, sem esperar pelo cron do dia seguinte
+            break  # not_yet ou skipped: não faz sentido continuar hoje
+
+    if processed == 0:
+        log.info("Nenhuma etapa nova processada.")
+        sys.exit(0)
 
     html_out = generate_html()
     log.info("HTML gerado: %s", html_out)
-    log.info("Auto-update concluído para etapa %d.", stage)
+    log.info("Auto-update concluído — %d etapa(s) processada(s).", processed)
 
 
 if __name__ == "__main__":
