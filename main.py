@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """
-Fantasy Cycling — Tour de France 2026
-CLI principal.
+Fantasy Cycling — CLI principal.
 
 Utilização:
   python main.py setup                  # Registar participantes e corredores
   python main.py update <etapa>         # Buscar resultados e calcular pontos
   python main.py update <etapa> --force # Substituir etapa já processada
+  python main.py update <etapa> --gc    # Usar a Classificação Geral em vez do
+                                         # resultado da etapa (ex.: CRE por equipas)
   python main.py ranking                # Ver classificação geral
   python main.py stage <etapa>          # Detalhes de uma etapa
   python main.py participants           # Listar participantes
@@ -26,7 +27,7 @@ from fantasy import (
     save_participants,
     save_results,
 )
-from scraper import get_gc_results, get_stage_results
+from scraper import StageCancelled, get_gc_results, get_stage_results
 
 # ---------------------------------------------------------------------------
 # Helpers de apresentação
@@ -115,6 +116,16 @@ def cmd_update(args) -> None:
     print(f"\nA obter {'classificação geral' if args.gc else 'resultados'} da etapa {stage} em procyclingstats.com...")
     try:
         stage_results = (get_gc_results if args.gc else get_stage_results)(stage)
+    except StageCancelled as exc:
+        print(f"\n⚠️  {exc}")
+        if existing:
+            results = [r for r in results if r["stage"] != stage]
+        results.append({"stage": stage, "cancelled": True, "scores": [], "top10": []})
+        results.sort(key=lambda x: x["stage"])
+        save_results(results)
+        html_file = generate_html()
+        print(f"Etapa {stage} marcada como anulada (sem pontos atribuídos). HTML atualizado: {html_file}")
+        return
     except Exception as exc:  # noqa: BLE001
         print(f"Erro ao obter resultados: {exc}")
         sys.exit(1)
@@ -171,6 +182,10 @@ def cmd_stage(args) -> None:
     if not stage_data:
         print(f"Etapa {args.stage} ainda não foi processada.")
         sys.exit(1)
+
+    if stage_data.get("cancelled"):
+        print(f"\nEtapa {args.stage} foi anulada — sem resultados nem pontos atribuídos.\n")
+        return
 
     print(f"\n{'=' * 45}")
     print(f"  ETAPA {args.stage} — Top 10")
@@ -295,7 +310,7 @@ def main() -> None:
     p_update.add_argument(
         "--gc", action="store_true",
         help="Usar a Classificação Geral (GC) após a etapa em vez do resultado da etapa "
-             "(ex.: etapa 1 do Tour 2026, que é um CRE por equipas)",
+             "(ex.: CRE por equipas)",
     )
 
     sub.add_parser("ranking", help="Ver classificação geral")

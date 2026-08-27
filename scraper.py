@@ -20,6 +20,14 @@ from config import PCS_BASE_URL, RACE_SLUG, RACE_YEAR
 PROXY_API_KEY = os.environ.get("SCRAPER_API_KEY")
 PROXY_ENDPOINT = "https://api.scraperapi.com/"
 
+# Nº mínimo de linhas marcadas "NR" (sem resultado) para considerarmos que uma
+# etapa foi anulada, em vez de simplesmente não ter ainda nenhum dado.
+CANCELLED_NR_THRESHOLD = 30
+
+
+class StageCancelled(Exception):
+    """A etapa realizou-se mas foi anulada (sem tempos/resultados oficiais)."""
+
 
 def normalize_name(name: str) -> str:
     """Normaliza nome: minúsculas, sem acentos, espaços simples."""
@@ -75,9 +83,14 @@ def get_gc_results(stage_number: int) -> list[dict]:
 
 def _parse_and_validate(html: str, stage_number: int, label: str) -> list[dict]:
     soup = BeautifulSoup(html, "html.parser")
-    results = _parse_results(soup)
+    results, nr_count = _parse_results(soup)
 
     if not results:
+        if nr_count >= CANCELLED_NR_THRESHOLD:
+            raise StageCancelled(
+                f"Etapa {stage_number} parece ter sido anulada "
+                f"({nr_count} corredores marcados como NR, sem posição atribuída)."
+            )
         raise ValueError(
             f"Sem {label} para a etapa {stage_number}. "
             "A etapa ainda não foi disputada ou a estrutura da página mudou."
@@ -119,8 +132,9 @@ def _fetch_and_parse(url: str, stage_number: int, label: str, max_attempts: int 
         try:
             html = _fetch_direct(url)
             return _parse_and_validate(html, stage_number, label)
-        except ValueError:
-            # Sem dados = etapa ainda não disputada. Repetir não vai ajudar.
+        except (ValueError, StageCancelled):
+            # Sem dados = etapa ainda não disputada, ou etapa anulada.
+            # Repetir não vai ajudar em nenhum dos dois casos.
             raise
         except Exception as exc:
             last_exc = exc
@@ -133,7 +147,7 @@ def _fetch_and_parse(url: str, stage_number: int, label: str, max_attempts: int 
         try:
             html = _fetch_via_proxy(url)
             return _parse_and_validate(html, stage_number, label)
-        except ValueError:
+        except (ValueError, StageCancelled):
             raise
         except Exception as exc:
             last_exc = exc
@@ -141,16 +155,22 @@ def _fetch_and_parse(url: str, stage_number: int, label: str, max_attempts: int 
     raise last_exc
 
 
-def _parse_results(soup: BeautifulSoup) -> list[dict]:
+def _parse_results(soup: BeautifulSoup) -> tuple[list[dict], int]:
     """
     Percorre todas as tabelas HTML à procura de linhas com posição numérica
     e um link de corredor (/rider/).
+
+    Devolve (resultados_validos, numero_de_linhas_NR). O segundo valor ajuda a
+    distinguir uma etapa anulada (quase todo o pelotão marcado como "NR" — sem
+    resultado) de uma etapa que ainda nem tem tabela de resultados.
     """
     results = []
     seen_positions = set()
+    nr_count = 0
 
     for table in soup.find_all("table"):
         table_results = []
+        table_nr = 0
         rows = table.find_all("tr")
 
         for row in rows:
@@ -159,6 +179,11 @@ def _parse_results(soup: BeautifulSoup) -> list[dict]:
                 continue
 
             pos_text = cols[0].get_text(strip=True)
+
+            if pos_text.upper() == "NR":
+                table_nr += 1
+                continue
+
             if not pos_text.isdigit():
                 continue
             position = int(pos_text)
@@ -191,8 +216,15 @@ def _parse_results(soup: BeautifulSoup) -> list[dict]:
             )
             seen_positions.add(position)
 
+        if table_nr >= CANCELLED_NR_THRESHOLD and len(table_results) < 10:
+            # Esta é claramente a tabela de resultados da etapa (startlist completa
+            # marcada como NR) — a etapa foi anulada. Não faz sentido continuar a
+            # procurar noutras tabelas da página (ex.: um widget de GC ao lado).
+            return [], table_nr
+
         if len(table_results) >= 10:
             results = table_results
+            nr_count = table_nr
             break
 
-    return results
+    return results, nr_count

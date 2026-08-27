@@ -131,8 +131,27 @@ def _stages_section(results: list[dict]) -> str:
             continue
 
         stage_data = results_by_stage[sn]
-        scores = stage_data.get("scores", [])
         is_open = sn == last_played
+
+        if stage_data.get("cancelled"):
+            accordion_items += f"""
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button {'collapsed' if not is_open else ''} text-muted"
+                    type="button" data-bs-toggle="collapse" data-bs-target="#stage{sn}">
+              Etapa {sn} <span class="ms-2 badge bg-warning text-dark">Anulada</span>
+            </button>
+          </h2>
+          <div id="stage{sn}"
+               class="accordion-collapse collapse {'show' if is_open else ''}">
+            <div class="accordion-body text-muted">
+              Etapa anulada — sem resultados nem pontos atribuídos.
+            </div>
+          </div>
+        </div>"""
+            continue
+
+        scores = stage_data.get("scores", [])
 
         # Coluna esquerda: pontuação fantasy (melhor corredor de cada participante)
         score_rows = ""
