@@ -191,13 +191,16 @@ def get_cumulative_rankings() -> list[dict]:
 def get_total_scores() -> list[dict]:
     """
     Soma os pontos de todas as etapas processadas e devolve o ranking ordenado
-    (menor total = melhor classificação).
+    (menor total = melhor classificação). Inclui também o número de vitórias
+    de etapa de cada participante, e quantas vieram de cada corredor da equipa.
     """
     results = load_results()
     participants = load_participants()
 
     totals: dict[str, int] = {p["name"]: 0 for p in participants}
     stages_counted: dict[str, int] = {p["name"]: 0 for p in participants}
+    wins: dict[str, int] = {p["name"]: 0 for p in participants}
+    wins_by_rider: dict[str, dict[str, int]] = {p["name"]: {} for p in participants}
 
     for stage in results:
         for score in stage["scores"]:
@@ -205,12 +208,20 @@ def get_total_scores() -> list[dict]:
             if score["stage_points"] is not None:
                 totals[name] = totals.get(name, 0) + score["stage_points"]
                 stages_counted[name] = stages_counted.get(name, 0) + 1
+                if score.get("position") == 1:
+                    wins[name] = wins.get(name, 0) + 1
+                    rider = score.get("best_rider")
+                    if rider:
+                        by_rider = wins_by_rider.setdefault(name, {})
+                        by_rider[rider] = by_rider.get(rider, 0) + 1
 
     ranking = [
         {
             "participant": name,
             "total_points": points,
             "stages_scored": stages_counted.get(name, 0),
+            "wins": wins.get(name, 0),
+            "wins_by_rider": wins_by_rider.get(name, {}),
         }
         for name, points in totals.items()
     ]

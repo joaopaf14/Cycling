@@ -25,6 +25,14 @@ def _pts_class(pts: int) -> str:
     return ""
 
 
+def _wins_breakdown_text(wins_by_rider: dict) -> str:
+    """Formata o detalhe de vitórias por corredor, ex.: '2x Pogačar · 1x Evenepoel'."""
+    if not wins_by_rider:
+        return ""
+    parts = sorted(wins_by_rider.items(), key=lambda kv: -kv[1])
+    return " · ".join(f"{count}x {rider}" for rider, count in parts)
+
+
 def _evolution_section(history: list[dict]) -> str:
     """
     Tabela de evolução: linhas = participantes, colunas = etapas.
@@ -79,12 +87,18 @@ def _ranking_section(ranking: list[dict], stages_done: int) -> str:
         pts = entry["total_points"]
         pts_cls = _pts_class(pts)
         sign = "+" if pts >= 0 else ""
+        wins = entry.get("wins", 0)
+        breakdown = _wins_breakdown_text(entry.get("wins_by_rider", {}))
+        breakdown_html = (
+            f'<div class="text-muted" style="font-size:.72rem">{breakdown}</div>'
+            if breakdown else ""
+        )
         rows += f"""
         <tr {'class="table-warning fw-bold"' if i == 0 else ''}>
           <td class="text-center">{medal}</td>
-          <td>{entry['participant']}</td>
+          <td>{entry['participant']}{breakdown_html}</td>
           <td class="text-center {pts_cls}">{sign}{pts}</td>
-          <td class="text-center text-muted">{entry['stages_scored']}</td>
+          <td class="text-center text-muted">{wins}</td>
         </tr>"""
 
     return f"""
@@ -94,7 +108,7 @@ def _ranking_section(ranking: list[dict], stages_done: int) -> str:
           <th class="text-center" style="width:60px">Pos</th>
           <th>Participante</th>
           <th class="text-center">Pontos</th>
-          <th class="text-center">Etapas</th>
+          <th class="text-center">Vitórias</th>
         </tr>
       </thead>
       <tbody>{rows}
