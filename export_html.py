@@ -90,15 +90,15 @@ def _ranking_section(ranking: list[dict], stages_done: int) -> str:
         wins = entry.get("wins", 0)
         breakdown = _wins_breakdown_text(entry.get("wins_by_rider", {}))
         breakdown_html = (
-            f'<div class="text-muted" style="font-size:.72rem">{breakdown}</div>'
+            f'<div class="text-muted fw-normal" style="font-size:.72rem">{breakdown}</div>'
             if breakdown else ""
         )
         rows += f"""
         <tr {'class="table-warning fw-bold"' if i == 0 else ''}>
           <td class="text-center">{medal}</td>
-          <td>{entry['participant']}{breakdown_html}</td>
+          <td>{entry['participant']}</td>
           <td class="text-center {pts_cls}">{sign}{pts}</td>
-          <td class="text-center text-muted">{wins}</td>
+          <td class="text-center">{wins}{breakdown_html}</td>
         </tr>"""
 
     return f"""
@@ -106,7 +106,7 @@ def _ranking_section(ranking: list[dict], stages_done: int) -> str:
       <thead class="table-dark">
         <tr>
           <th class="text-center" style="width:60px">Pos</th>
-          <th>Participante</th>
+          <th style="width:110px">Participante</th>
           <th class="text-center">Pontos</th>
           <th class="text-center">Vitórias</th>
         </tr>
