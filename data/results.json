@@ -1843,17 +1843,17 @@
     "scores": [
       {
         "participant": "João",
-        "best_rider": "Thibau Nys",
-        "position": 3,
-        "stage_points": 3,
+        "best_rider": "Finn Fisher-Black",
+        "position": 11,
+        "stage_points": 11,
         "riders_detail": [
           {
             "rider_name": "Felix Gall",
             "position": 40
           },
           {
-            "rider_name": "Thibau Nys",
-            "position": 3
+            "rider_name": "Finn Fisher-Black",
+            "position": 11
           },
           {
             "rider_name": "Tobias Halland Johannessen",
