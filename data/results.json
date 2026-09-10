@@ -2266,9 +2266,9 @@
     "scores": [
       {
         "participant": "João",
-        "best_rider": "Finn Fisher-Black",
-        "position": 6,
-        "stage_points": 6,
+        "best_rider": "Primož Roglič",
+        "position": 4,
+        "stage_points": 4,
         "riders_detail": [
           {
             "rider_name": "Felix Gall",
@@ -2279,8 +2279,8 @@
             "position": 6
           },
           {
-            "rider_name": "Bryan Coquard",
-            "position": 62
+            "rider_name": "Primož Roglič",
+            "position": 4
           }
         ],
         "note": ""
