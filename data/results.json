@@ -2401,5 +2401,146 @@
         "rider_normalized": "azparren xabier mikel"
       }
     ]
+  },
+  {
+    "stage": 19,
+    "scores": [
+      {
+        "participant": "João",
+        "best_rider": "Felix Gall",
+        "position": 12,
+        "stage_points": 12,
+        "riders_detail": [
+          {
+            "rider_name": "Felix Gall",
+            "position": 12
+          },
+          {
+            "rider_name": "Finn Fisher-Black",
+            "position": 61
+          },
+          {
+            "rider_name": "Primož Roglič",
+            "position": 14
+          }
+        ],
+        "note": ""
+      },
+      {
+        "participant": "Vitor",
+        "best_rider": "Santiago Buitrago",
+        "position": 2,
+        "stage_points": 2,
+        "riders_detail": [
+          {
+            "rider_name": "Matthew Brennan",
+            "position": 116
+          },
+          {
+            "rider_name": "Santiago Buitrago",
+            "position": 2
+          },
+          {
+            "rider_name": "Sepp Kuss",
+            "position": 19
+          }
+        ],
+        "note": ""
+      },
+      {
+        "participant": "Manu",
+        "best_rider": "Richard Carapaz",
+        "position": 13,
+        "stage_points": 13,
+        "riders_detail": [
+          {
+            "rider_name": "Wout Van Aert",
+            "position": 97
+          },
+          {
+            "rider_name": "Richard Carapaz",
+            "position": 13
+          },
+          {
+            "rider_name": "Oscar Onley",
+            "position": 16
+          }
+        ],
+        "note": ""
+      },
+      {
+        "participant": "Tiago",
+        "best_rider": "Enric Mas",
+        "position": 15,
+        "stage_points": 15,
+        "riders_detail": [
+          {
+            "rider_name": "Enric Mas",
+            "position": 15
+          },
+          {
+            "rider_name": "João Almeida",
+            "position": 135
+          },
+          {
+            "rider_name": "Jordi Meeus",
+            "position": 139
+          }
+        ],
+        "note": ""
+      }
+    ],
+    "top10": [
+      {
+        "position": 1,
+        "rider": "Eddie Dunbar",
+        "rider_normalized": "dunbar eddie"
+      },
+      {
+        "position": 2,
+        "rider": "Santiago Buitrago",
+        "rider_normalized": "buitrago santiago"
+      },
+      {
+        "position": 3,
+        "rider": "Thomas Gloag",
+        "rider_normalized": "gloag thomas"
+      },
+      {
+        "position": 4,
+        "rider": "Urko Berrade",
+        "rider_normalized": "berrade urko"
+      },
+      {
+        "position": 5,
+        "rider": "Marcel Camprubí",
+        "rider_normalized": "camprubi marcel"
+      },
+      {
+        "position": 6,
+        "rider": "Guillaume Martin",
+        "rider_normalized": "martin guillaume"
+      },
+      {
+        "position": 7,
+        "rider": "Andreas Leknessund",
+        "rider_normalized": "leknessund andreas"
+      },
+      {
+        "position": 8,
+        "rider": "Chris Hamilton",
+        "rider_normalized": "hamilton chris"
+      },
+      {
+        "position": 9,
+        "rider": "Kevin Vermaerke",
+        "rider_normalized": "vermaerke kevin"
+      },
+      {
+        "position": 10,
+        "rider": "Sergio Samitier",
+        "rider_normalized": "samitier sergio"
+      }
+    ]
   }
 ]
